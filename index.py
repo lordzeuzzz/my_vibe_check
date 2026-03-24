@@ -5,7 +5,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Connect to MongoDB using an Environment Variable (Security)
+# Security: Ensure MONGO_URI is set in Vercel Settings
 MONGO_URI = os.environ.get("MONGO_URI")
 client = MongoClient(MONGO_URI)
 db = client.vibe_db
@@ -13,7 +13,7 @@ collection = db.updates
 
 @app.route('/')
 def index():
-    # Get all updates, newest first
+    # Fetch posts from MongoDB, newest first
     posts = list(collection.find().sort("_id", -1))
     return render_template('index.html', posts=posts)
 
@@ -25,10 +25,10 @@ def add():
         collection.insert_one({
             "skill": skill,
             "notes": notes,
-            "date": datetime.now().strftime("%Y-%m-%d %H:%M")
+            "date": datetime.now().strftime("%d %b %Y, %I:%M %p")
         })
     return redirect('/')
 
-# This is required for Vercel
+# Required for Vercel deployment
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
