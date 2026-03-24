@@ -3,148 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aliyar Ishrath | Digital Journal</title>
+    <title>Alan Thomas | Digital Journal</title>
     <style>
         :root {
-            /* --- SOFT GIRLS' PASTEL PALETTE --- */
-            --bg-start: #ffdde1; /* Soft Pink */
-            --bg-end: #ee9ca7;   /* Rose Pink */
-            --text-color: #5d4a5d; /* Soft Purple/Dark Brown for text */
-            --accent-pink: #f8bbd0; /* Highlight Pink */
-            --accent-purple: #e1bee7; /* Highlight Purple */
-            --glass-bg: rgba(255, 255, 255, 0.4); /* Transparent glass base */
-            --glass-border: rgba(255, 255, 255, 0.2);
+            /* GIRLY PASTEL GLASS PALETTE */
+            --bg-gradient: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --text-color: #4a4a4a;
+            --accent-pink: #ff85a2;
+            --accent-purple: #b388ff;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Poppins', 'Inter', system-ui, sans-serif; background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%); background-attachment: fixed; color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
-        
-        /* Layout Grid */
-        .container { display: grid; grid-template-columns: 320px 1fr; gap: 40px; max-width: 1300px; margin: 60px auto; padding: 0 20px; }
-
-        /* --- SIDEBAR (Aliyar's Info) with GLASSMORPHISM --- */
-        .sidebar { background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 30px; text-align: center; box-shadow: 0 8px 32px 0 rgba(100, 100, 100, 0.1); transition: transform 0.3s ease; }
-        .sidebar:hover { transform: translateY(-5px); }
-        .avatar { width: 140px; height: 140px; border-radius: 50%; border: 6px solid #fff; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .sidebar h2 { font-weight: 700; color: #7e57c2; margin-bottom: 5px; } /* Pastel Purple Name */
-        .tagline { color: #8d7a8d; font-size: 0.95em; font-weight: 500; margin-bottom: 25px; }
-
-        /* --- MAIN CONTENT (Updates) --- */
-        .main-content { display: flex; flex-direction: column; gap: 25px; }
-
-        /* -- INPUT FORM with GLASSMORPHISM -- */
-        .vibe-check-form { 
-            background: var(--glass-bg); 
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border); 
-            border-radius: 20px; 
-            padding: 30px; 
-            box-shadow: 0 8px 32px 0 rgba(100, 100, 100, 0.1);
-        }
-        
-        .vibe-check-form h3 { font-weight: 600; color: #ec407a; margin-bottom: 20px; border-bottom: 2px solid var(--glass-border); padding-bottom: 12px; }
-
-        input, textarea { 
-            width: 100%; 
-            background: rgba(255, 255, 255, 0.3); 
-            color: var(--text-color); 
-            border: 1px solid var(--glass-border); 
-            padding: 14px; 
-            margin-bottom: 15px; 
-            border-radius: 10px; 
-            font-family: inherit;
-        }
-        
-        input:focus, textarea:focus { background: rgba(255, 255, 255, 0.6); border-color: #f48fb1; outline: none; }
-
-        button { 
-            background: linear-gradient(90deg, #ec407a 0%, #ab47bc 100%); 
-            color: white; 
-            border: none; 
-            padding: 14px 28px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            cursor: pointer; 
-            border-radius: 10px; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 4px 15px rgba(236, 64, 122, 0.3);
-        }
-        
-        button:hover { box-shadow: 0 6px 20px rgba(236, 64, 122, 0.5); transform: translateY(-2px); }
-
-        /* -- THE UPDATES FEED with GLASSMORPHIC CARDS -- */
-        .updates-feed h3 { color: #8d7a8d; margin-bottom: 15px; font-weight: 600; }
-
-        .update-card { 
-            background: var(--glass-bg); 
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border); 
-            border-radius: 15px; 
-            padding: 20px; 
-            margin-bottom: 15px; 
-            transition: all 0.2s ease; 
-            box-shadow: 0 4px 15px rgba(100, 100, 100, 0.05);
-        }
-        
-        .update-card:hover { transform: scale(1.02); background: rgba(255, 255, 255, 0.6); box-shadow: 0 8px 32px rgba(100, 100, 100, 0.1); }
-
-        .update-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .skill-tag { background: rgba(225, 190, 247, 0.3); color: #7e57c2; padding: 5px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600; }
-        .date { color: #8d7a8d; font-size: 0.85em; }
-
-        /* --- COOL GLOW EFFECT (Animation) --- */
-        @keyframes subtleGlow { 
-            0% { box-shadow: 0 8px 32px 0 rgba(100, 100, 100, 0.1); } 
-            50% { box-shadow: 0 8px 40px 10px rgba(244, 143, 177, 0.2); } 
-            100% { box-shadow: 0 8px 32px 0 rgba(100, 100, 100, 0.1); } 
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: var(--bg-gradient); 
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        .vibe-check-form { animation: subtleGlow 4s infinite; }
+        /* Glassmorphic Container */
+        .glass-container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
 
-        /* Responsiveness for mobile */
-        @media (max-width: 900px) { .container { grid-template-columns: 1fr; margin: 30px auto; } }
+        /* Sidebar Section */
+        .sidebar {
+            text-align: center;
+            border-right: 1px solid var(--glass-border);
+            padding-right: 30px;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--accent-pink);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .sidebar h1 { font-size: 24px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .sidebar p { font-size: 14px; color: #ffffff; opacity: 0.9; margin-top: 10px; }
+
+        /* Content Section */
+        .main-content { overflow-y: auto; max-height: 70vh; padding-right: 10px; }
+
+        /* Form Styling */
+        .vibe-form { margin-bottom: 30px; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.5);
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus { background: rgba(255, 255, 255, 0.8); box-shadow: 0 0 10px var(--accent-pink); }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(to right, var(--accent-pink), var(--accent-purple));
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover { transform: scale(1.02); }
+
+        /* Update Cards */
+        .update-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--glass-border);
+            animation: fadeIn 0.5s ease;
+        }
+        .update-card h4 { color: #d81b60; margin-bottom: 5px; }
+        .update-card small { color: #888; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            .glass-container { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px; padding-right: 0; }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <aside class="sidebar">
-        <div class="avatar" style="background:rgba(225, 190, 247, 0.5); color:#7e57c2; display:flex; align-items:center; justify-content:center; font-size:3.5em; font-weight:bold; margin:auto; margin-bottom:25px;">AI</div>
-        <h2>Aliyar Ishrath</h2>
-        <p class="tagline">Junior Developer | Python, Flask, UI/UX Design</p>
-        <p style="color:#8d7a8d;">SEC Assignment - Modern Workflow</p>
-    </aside>
+<div class="glass-container">
+    <div class="sidebar">
+        <div class="profile-pic">AT</div>
+        <h1>Alan Thomas</h1>
+        <p>Full Stack Dev Enthusiast</p>
+        <p>✨ Currently learning Web Workflow & MongoDB</p>
+    </div>
 
-    <main class="main-content">
-        
-        <section class="vibe-check-form">
-            <h3>✨ Daily Vibe Check (New Status)</h3>
+    <div class="main-content">
+        <section class="vibe-form">
+            <h3 style="margin-bottom: 15px; color: white;">🌸 Share an Update</h3>
             <form action="/add" method="POST">
-                <input type="text" name="skill" placeholder="Skill/Topic (e.g., Responsive Design, Git Hooks)" required>
-                <textarea name="notes" placeholder="Quick reflections or notes..."></textarea>
-                <button type="submit">Publish Update</button>
+                <input type="text" name="skill" placeholder="What are you studying today?" required>
+                <textarea name="notes" placeholder="Any cool notes or takeaways?" rows="3"></textarea>
+                <button type="submit">Post to Journal</button>
             </form>
         </section>
 
-        <section class="updates-feed">
-            <h3>My Learning Journal</h3>
-            <hr style="border: none; border-bottom:1px solid var(--glass-border); margin-bottom:20px;">
-            
-            {% if not posts %}
-            <p style="color:#8d7a8d; font-style:italic;">No updates yet. Use the form above to post your first thought!</p>
-            {% endif %}
-
+        <h3 style="margin-bottom: 15px; color: white;">Journal Feed</h3>
+        <div id="feed">
             {% for post in posts %}
             <div class="update-card">
-                <div class="update-header">
-                    <span class="skill-tag">{{ post.skill }}</span>
-                    <span class="date">{{ post.date }}</span>
-                </div>
+                <h4>{{ post.skill }}</h4>
                 <p>{{ post.notes }}</p>
+                <small>Posted on: {{ post.date }}</small>
             </div>
             {% endfor %}
-        </section>
-    </main>
+        </div>
+    </div>
 </div>
 
 </body>
