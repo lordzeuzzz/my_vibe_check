@@ -3,156 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhishek's Vibe Check</title>
+    <title>Aaron Francis | Dev Profile</title>
     <style>
         :root {
-            --primary: #6c5ce7;
-            --secondary: #a29bfe;
-            --accent: #00d2ff;
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --accent: #00ffd0; /* Electric Teal */
+            --highlight: #21262d;
+            --border: #30363d;
         }
 
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            max-width: 650px; 
-            margin: auto; 
-            padding: 40px 20px; 
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        
+        /* Layout Grid */
+        .container { display: grid; grid-template-columns: 300px 1fr; gap: 30px; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
 
-        /* Floating Emojis Background */
-        .emoji-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
+        /* --- SIDEBAR (Aaron's Info) --- */
+        .sidebar { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; text-align: center; }
+        .avatar { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 20px; }
+        .sidebar h2 { color: var(--accent); }
+        .tagline { color: #8b949e; font-size: 0.9em; margin-bottom: 20px; }
 
-        .floating-emoji {
-            position: absolute;
-            font-size: 2.5rem;
-            animation: float 12s linear infinite;
-            opacity: 0.4;
-        }
+        /* --- MAIN CONTENT (Updates) --- */
+        .main-content { display: flex; flex-direction: column; gap: 20px; }
 
-        @keyframes float {
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        /* -- INPUT FORM -- */
+        .vibe-check-form { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 25px; 
+            position: relative; /* For the glow effect */
+            animation: formFocus 2s infinite; /* A pulsing animation on load */
         }
-
-        h1 { text-align: center; font-size: 2.8rem; margin-bottom: 30px; text-shadow: 0 0 20px var(--primary); }
-
-        .form-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
+        
+        .vibe-check-form h3 { margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
 
         input, textarea { 
-            width: 100%; margin: 12px 0; padding: 15px; 
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--secondary);
-            border-radius: 12px; color: white;
-            box-sizing: border-box; font-size: 1rem;
+            width: 100%; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            border: 1px solid var(--border); 
+            padding: 12px; 
+            margin-bottom: 12px; 
+            border-radius: 6px; 
+            font-family: inherit;
         }
+        
+        input:focus, textarea:focus { border-color: var(--accent); outline: none; }
 
         button { 
-            background: linear-gradient(45deg, #6c5ce7, #00d2ff); 
-            color: white; border: none; padding: 15px; 
-            width: 100%; border-radius: 12px; font-weight: bold;
-            cursor: pointer; transition: 0.4s; font-size: 1.1rem;
-            margin-top: 10px;
+            background: transparent; 
+            color: var(--accent); 
+            border: 2px solid var(--accent); 
+            padding: 12px 24px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            border-radius: 6px; 
+            transition: all 0.3s ease; 
         }
-
-        button:hover { transform: translateY(-3px); box-shadow: 0 0 25px var(--primary); }
-
-        .card { 
-            background: rgba(255, 255, 255, 0.07); 
-            padding: 20px; border-radius: 18px; 
-            margin-bottom: 20px; border-left: 6px solid var(--accent);
-            transition: 0.3s;
-        }
-
-        .card:hover { background: rgba(255, 255, 255, 0.12); transform: scale(1.01); }
         
-        strong { color: var(--secondary); font-size: 1.3rem; }
-        p { line-height: 1.5; color: #eee; margin: 10px 0; }
-        small { display: block; opacity: 0.6; font-style: italic; }
+        button:hover { background-color: var(--accent); color: #0d1117; box-shadow: 0 0 15px var(--accent); transform: translateY(-2px); }
 
-        .about-card {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(15px);
-            padding: 30px;
-            border-radius: 24px;
-            margin-top: 60px;
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            text-align: center;
+        /* -- THE UPDATES FEED -- */
+        .updates-feed h3 { color: #8b949e; margin-bottom: 15px; }
+
+        .update-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 8px; 
+            padding: 15px; 
+            margin-bottom: 10px; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+        }
+        
+        .update-card:hover { transform: translateX(5px); background-color: var(--highlight); }
+
+        .update-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .skill-tag { background: rgba(0, 255, 208, 0.1); color: var(--accent); padding: 3px 8px; border-radius: 20px; font-size: 0.8em; font-weight: bold; }
+        .date { color: #8b949e; font-size: 0.8em; }
+
+        /* --- COOL EFFECTS / ANIMATIONS --- */
+        @keyframes formFocus { 
+            0% { box-shadow: 0 0 5px rgba(0, 255, 208, 0.3); } 
+            50% { box-shadow: 0 0 20px rgba(0, 255, 208, 0.6); } 
+            100% { box-shadow: 0 0 5px rgba(0, 255, 208, 0.3); } 
         }
 
-        .about-card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.6rem; }
-        .about-card p { font-size: 1rem; color: #ddd; line-height: 1.7; }
-
-        .tags { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-        .tags span {
-            background: rgba(108, 92, 231, 0.3);
-            border: 1px solid var(--primary);
-            padding: 6px 15px; border-radius: 25px;
-            font-size: 0.85rem; font-weight: 600;
-        }
+        /* Responsiveness for mobile */
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <div class="emoji-bg">
-        <span class="floating-emoji" style="left: 5%; animation-delay: 0s;">🚀</span>
-        <span class="floating-emoji" style="left: 25%; animation-delay: 4s;">✨</span>
-        <span class="floating-emoji" style="left: 50%; animation-delay: 2s;">🔥</span>
-        <span class="floating-emoji" style="left: 75%; animation-delay: 7s;">💻</span>
-        <span class="floating-emoji" style="left: 90%; animation-delay: 10s;">🌈</span>
-    </div>
 
-    <h1>🚀 Vibe Check</h1>
-    
-    <div class="form-card">
-        <form action="/add" method="POST">
-            <input type="text" name="skill" placeholder="What are you learning today?" required>
-            <textarea name="notes" rows="3" placeholder="Share your progress..."></textarea>
-            <button type="submit">Post Update</button>
-        </form>
-    </div>
-
-    <div id="posts-container">
-        {% for post in posts %}
-        <div class="card">
-            <strong>{{ post.skill }}</strong>
-            <p>{{ post.notes }}</p>
-            <small>🕒 {{ post.date }}</small>
+<div class="container">
+    <aside class="sidebar">
+        <div class="avatar-container">
+            <div class="avatar" style="background:#21262d; color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:3em; margin:auto; margin-bottom:20px;">AF</div>
         </div>
-        {% endfor %}
-    </div>
+        <h2>Aaron Francis</h2>
+        <p class="tagline">Junior Full-Stack Developer | C++, Python, Flask</p>
+        <p style="color:#8b949e;">Assignment SEC Course 2026</p>
+    </aside>
 
-    <div class="about-card">
-        <h3>👤 About Me</h3>
-        <p>
-            My name is <strong>Abhishek Kuriakose</strong>, and I am a <strong>BSc AI/ML</strong> student at 
-            <strong>Kristu Jayanti University</strong>. Currently in my second year, I have developed a strong 
-            foundation in <strong>HTML</strong> and <strong>C programming</strong>. 
-            I built this "Vibe Check" application to document my learning journey and showcase my 
-            skills in web development and cloud deployment.
-        </p>
-        <div class="tags">
-            <span>#BScAIML</span>
-            <span>#KristuJayanti</span>
-            <span>#CProgramming</span>
-            <span>#WebDevelopment</span>
-        </div>
-    </div>
+    <main class="main-content">
+        
+        <section class="vibe-check-form">
+            <h3>⚡ Daily Vibe Check (Data Input)</h3>
+            <form action="/add" method="POST">
+                <input type="text" name="skill" placeholder="Skill/Topic (e.g., MongoDB Aggregation)" required>
+                <textarea name="notes" placeholder="Quick summary of key learnings..."></textarea>
+                <button type="submit">Submit Status</button>
+            </form>
+        </section>
+
+        <section class="updates-feed">
+            <h3>Learning Log</h3>
+            <hr style="border-color:var(--border); margin-bottom:15px;">
+            
+            {% if not posts %}
+            <p style="color:#8b949e; font-style:italic;">No updates yet. Try submitting the form above!</p>
+            {% endif %}
+
+            {% for post in posts %}
+            <div class="update-card">
+                <div class="update-header">
+                    <span class="skill-tag">{{ post.skill }}</span>
+                    <span class="date">{{ post.date }}</span>
+                </div>
+                <p>{{ post.notes }}</p>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+</div>
+
 </body>
 </html>
