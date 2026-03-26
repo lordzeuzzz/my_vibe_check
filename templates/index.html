@@ -3,198 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhishek Kuriakose Babu | AIML Portfolio</title>
+    <title>Abhishek's Vibe Check</title>
+    <title>Aaron Francis | Dev Profile</title>
     <style>
         :root {
-            --bg-dark: #050a10;
-            --accent-neon: #00ff9d;
-            --accent-soft: #0084ff;
-            --glass: rgba(255, 255, 255, 0.03);
-            --text-bright: #ffffff;
-            --text-dim: #94a3b8;
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #00d2ff;
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --accent: #00ffd0; /* Electric Teal */
+            --highlight: #21262d;
+            --border: #30363d;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-bright);
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            max-width: 650px; 
+            margin: auto; 
+            padding: 40px 20px; 
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            min-height: 100vh;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* Animated Background Particles */
-        body::before {
-            content: "";
+        /* Floating Emojis Background */
+        .emoji-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 255, 157, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(0, 132, 255, 0.05) 0%, transparent 50%);
             z-index: -1;
+            pointer-events: none;
         }
 
-        .wrapper { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
-
-        /* Header Section */
-        .hero {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 60px 40px;
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: "</>";
+        .floating-emoji {
             position: absolute;
-            right: -20px; bottom: -20px;
-            font-size: 10rem;
-            color: rgba(0, 255, 157, 0.03);
-            font-weight: 900;
+            font-size: 2.5rem;
+            animation: float 12s linear infinite;
+            opacity: 0.4;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(to right, var(--accent-neon), var(--accent-soft));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
 
-        .hero p { color: var(--text-dim); font-size: 1.2rem; max-width: 600px; margin: 15px auto; }
+        h1 { text-align: center; font-size: 2.8rem; margin-bottom: 30px; text-shadow: 0 0 20px var(--primary); }
 
-        .tag-container { display: flex; justify-content: center; gap: 12px; margin-top: 25px; flex-wrap: wrap; }
-        
-        .tag {
-            background: rgba(0, 255, 157, 0.1);
-            border: 1px solid var(--accent-neon);
-            color: var(--accent-neon);
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .tag:hover { background: var(--accent-neon); color: var(--bg-dark); box-shadow: 0 0 15px var(--accent-neon); }
-
-        /* Main Content Grid */
-        .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-
-        .card {
-            background: var(--glass);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+        .form-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
             padding: 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        
+        /* Layout Grid */
+        .container { display: grid; grid-template-columns: 300px 1fr; gap: 30px; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+
+        /* --- SIDEBAR (Aaron's Info) --- */
+        .sidebar { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; text-align: center; }
+        .avatar { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 20px; }
+        .sidebar h2 { color: var(--accent); }
+        .tagline { color: #8b949e; font-size: 0.9em; margin-bottom: 20px; }
+
+        /* --- MAIN CONTENT (Updates) --- */
+        .main-content { display: flex; flex-direction: column; gap: 20px; }
+
+        /* -- INPUT FORM -- */
+        .vibe-check-form { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 25px; 
+            position: relative; /* For the glow effect */
+            animation: formFocus 2s infinite; /* A pulsing animation on load */
         }
+        
+        .vibe-check-form h3 { margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
 
-        .card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: var(--accent-soft);
-        }
-
-        h2 { color: var(--accent-neon); margin-bottom: 20px; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
-
-        /* Form Controls */
-        input, textarea {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 15px;
-            color: white;
-            margin-bottom: 15px;
+        input, textarea { 
+            width: 100%; margin: 12px 0; padding: 15px; 
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--secondary);
+            border-radius: 12px; color: white;
+            box-sizing: border-box; font-size: 1rem;
+            width: 100%; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            border: 1px solid var(--border); 
+            padding: 12px; 
+            margin-bottom: 12px; 
+            border-radius: 6px; 
             font-family: inherit;
         }
+        
+        input:focus, textarea:focus { border-color: var(--accent); outline: none; }
 
-        input:focus { outline: none; border-color: var(--accent-neon); }
+        button { 
+            background: linear-gradient(45deg, #6c5ce7, #00d2ff); 
+            color: white; border: none; padding: 15px; 
+            width: 100%; border-radius: 12px; font-weight: bold;
+            cursor: pointer; transition: 0.4s; font-size: 1.1rem;
+            margin-top: 10px;
+            background: transparent; 
+            color: var(--accent); 
+            border: 2px solid var(--accent); 
+            padding: 12px 24px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            border-radius: 6px; 
+            transition: all 0.3s ease; 
+        }
 
-        button {
-            width: 100%;
-            padding: 15px;
-            border-radius: 12px;
-            border: none;
-            background: linear-gradient(45deg, var(--accent-neon), var(--accent-soft));
-            color: var(--bg-dark);
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
+        button:hover { transform: translateY(-3px); box-shadow: 0 0 25px var(--primary); }
+
+        .card { 
+            background: rgba(255, 255, 255, 0.07); 
+            padding: 20px; border-radius: 18px; 
+            margin-bottom: 20px; border-left: 6px solid var(--accent);
             transition: 0.3s;
         }
 
-        button:hover { filter: brightness(1.1); transform: scale(1.02); }
+        .card:hover { background: rgba(255, 255, 255, 0.12); transform: scale(1.01); }
 
-        /* Vibe Feed */
-        .post {
-            border-left: 3px solid var(--accent-soft);
-            padding-left: 20px;
-            margin-bottom: 25px;
+        strong { color: var(--secondary); font-size: 1.3rem; }
+        p { line-height: 1.5; color: #eee; margin: 10px 0; }
+        small { display: block; opacity: 0.6; font-style: italic; }
+
+        .about-card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 24px;
+            margin-top: 60px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            text-align: center;
+        button:hover { background-color: var(--accent); color: #0d1117; box-shadow: 0 0 15px var(--accent); transform: translateY(-2px); }
+
+        /* -- THE UPDATES FEED -- */
+        .updates-feed h3 { color: #8b949e; margin-bottom: 15px; }
+
+        .update-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 8px; 
+            padding: 15px; 
+            margin-bottom: 10px; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+        }
+        
+        .update-card:hover { transform: translateX(5px); background-color: var(--highlight); }
+
+        .about-card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.6rem; }
+        .about-card p { font-size: 1rem; color: #ddd; line-height: 1.7; }
+        .update-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .skill-tag { background: rgba(0, 255, 208, 0.1); color: var(--accent); padding: 3px 8px; border-radius: 20px; font-size: 0.8em; font-weight: bold; }
+        .date { color: #8b949e; font-size: 0.8em; }
+
+        .tags { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+        .tags span {
+            background: rgba(108, 92, 231, 0.3);
+            border: 1px solid var(--primary);
+            padding: 6px 15px; border-radius: 25px;
+            font-size: 0.85rem; font-weight: 600;
+        /* --- COOL EFFECTS / ANIMATIONS --- */
+        @keyframes formFocus { 
+            0% { box-shadow: 0 0 5px rgba(0, 255, 208, 0.3); } 
+            50% { box-shadow: 0 0 20px rgba(0, 255, 208, 0.6); } 
+            100% { box-shadow: 0 0 5px rgba(0, 255, 208, 0.3); } 
         }
 
-        .post-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .post-skill { font-weight: bold; color: var(--accent-soft); }
-        .post-date { font-size: 0.75rem; color: var(--text-dim); }
-
-        @media (max-width: 850px) {
-            .main-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.5rem; }
-        }
+        /* Responsiveness for mobile */
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
+    <div class="emoji-bg">
+        <span class="floating-emoji" style="left: 5%; animation-delay: 0s;">🚀</span>
+        <span class="floating-emoji" style="left: 25%; animation-delay: 4s;">✨</span>
+        <span class="floating-emoji" style="left: 50%; animation-delay: 2s;">🔥</span>
+        <span class="floating-emoji" style="left: 75%; animation-delay: 7s;">💻</span>
+        <span class="floating-emoji" style="left: 90%; animation-delay: 10s;">🌈</span>
+    </div>
 
-    <div class="wrapper">
-        <header class="hero">
-            <div style="font-family: monospace; color: var(--accent-neon); margin-bottom: 10px;">[ system.init_success ]</div>
-            <h1>Abhishek Kuriakose Babu</h1>
-            <p>1st Year BSc AIML Student at <strong>Kristu Jayanti University</strong>. Exploring the intersection of low-level C logic and high-level AI architectures.</p>
-            
-            <div class="tag-container">
-                <div class="tag">#HTML5</div>
-                <div class="tag">#C_Programming</div>
-                <div class="tag">#AI_Fundamentals</div>
-                <div class="tag">#Web_Dev</div>
-            </div>
-        </header>
+    <h1>🚀 Vibe Check</h1>
+    
+    <div class="form-card">
+        <form action="/add" method="POST">
+            <input type="text" name="skill" placeholder="What are you learning today?" required>
+            <textarea name="notes" rows="3" placeholder="Share your progress..."></textarea>
+            <button type="submit">Post Update</button>
+        </form>
+    </div>
 
-        <div class="main-grid">
-            <section>
-                <h2><span>01.</span> Log Update</h2>
-                <div class="card">
-                    <form action="/add" method="POST">
-                        <input type="text" name="skill" placeholder="Module name (e.g. Data Structures)" required>
-                        <textarea name="notes" placeholder="Detailed notes on today's session..." rows="4"></textarea>
-                        <button type="submit">Execute Deployment</button>
-                    </form>
-                </div>
-            </section>
+    <div id="posts-container">
+        {% for post in posts %}
+        <div class="card">
+            <strong>{{ post.skill }}</strong>
+            <p>{{ post.notes }}</p>
+            <small>🕒 {{ post.date }}</small>
+        </div>
+        {% endfor %}
+    </div>
 
-            <section>
-                <h2><span>02.</span> Vibe History</h2>
-                <div class="card">
-                    {% for post in posts %}
-                    <div class="post">
-                        <div class="post-header">
-                            <span class="post-skill">{{ post.skill }}</span>
-                            <span class="post-date">{{ post.date }}</span>
-                        </div>
-                        <p style="font-size: 0.95rem; color: var(--text-dim);">{{ post.notes }}</p>
-                    </div>
-                    {% else %}
-                    <p style="text-align: center; color: var(--text-dim); padding: 20px;">No logs found. Start your first session.</p>
-                    {% endfor %}
-                </div>
-            </section>
+    <div class="about-card">
+        <h3>👤 About Me</h3>
+        <p>
+            My name is <strong>Abhishek Kuriakose</strong>, and I am a <strong>BSc AI/ML</strong> student at 
+            <strong>Kristu Jayanti University</strong>. Currently in my second year, I have developed a strong 
+            foundation in <strong>HTML</strong> and <strong>C programming</strong>. 
+            I built this "Vibe Check" application to document my learning journey and showcase my 
+            skills in web development and cloud deployment.
+        </p>
+        <div class="tags">
+            <span>#BScAIML</span>
+            <span>#KristuJayanti</span>
+            <span>#CProgramming</span>
+            <span>#WebDevelopment</span>
+
+<div class="container">
+    <aside class="sidebar">
+        <div class="avatar-container">
+            <div class="avatar" style="background:#21262d; color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:3em; margin:auto; margin-bottom:20px;">AF</div>
         </div>
     </div>
+        <h2>Aaron Francis</h2>
+        <p class="tagline">Junior Full-Stack Developer | C++, Python, Flask</p>
+        <p style="color:#8b949e;">Assignment SEC Course 2026</p>
+    </aside>
+
+    <main class="main-content">
+        
+        <section class="vibe-check-form">
+            <h3>⚡ Daily Vibe Check (Data Input)</h3>
+            <form action="/add" method="POST">
+                <input type="text" name="skill" placeholder="Skill/Topic (e.g., MongoDB Aggregation)" required>
+                <textarea name="notes" placeholder="Quick summary of key learnings..."></textarea>
+                <button type="submit">Submit Status</button>
+            </form>
+        </section>
+
+        <section class="updates-feed">
+            <h3>Learning Log</h3>
+            <hr style="border-color:var(--border); margin-bottom:15px;">
+            
+            {% if not posts %}
+            <p style="color:#8b949e; font-style:italic;">No updates yet. Try submitting the form above!</p>
+            {% endif %}
+
+            {% for post in posts %}
+            <div class="update-card">
+                <div class="update-header">
+                    <span class="skill-tag">{{ post.skill }}</span>
+                    <span class="date">{{ post.date }}</span>
+                </div>
+                <p>{{ post.notes }}</p>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+</div>
 
 </body>
 </html>
