@@ -3,154 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alan Thomas | Digital Journal</title>
+    <title>Aliyar Ishrath | ✨ Pookie Portfolio</title>
     <style>
         :root {
-            /* GIRLY PASTEL GLASS PALETTE */
-            --bg-gradient: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.3);
-            --text-color: #4a4a4a;
-            --accent-pink: #ff85a2;
-            --accent-purple: #b388ff;
+            --pookie-pink: #ffc1cc;
+            --pookie-lavender: #e0b0ff;
+            --pookie-white: rgba(255, 255, 255, 0.7);
+            --text-dark: #6d4c41;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: var(--bg-gradient); 
-            background-attachment: fixed;
+
+        body {
+            font-family: 'Segoe UI', cursive, sans-serif;
             min-height: 100vh;
-            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%);
         }
 
-        /* Glassmorphic Container */
-        .glass-container {
-            width: 100%;
-            max-width: 900px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            padding: 40px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 30px;
+        /* --- POOKIE BACKGROUND ANIMATION --- */
+        .pookie-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
 
-        /* Sidebar Section */
-        .sidebar {
-            text-align: center;
-            border-right: 1px solid var(--glass-border);
-            padding-right: 30px;
-        }
-
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            background: white;
+        .bubble {
+            position: absolute;
             border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: var(--accent-pink);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: white;
+            opacity: 0.4;
+            animation: float 15s infinite ease-in-out;
         }
 
-        .sidebar h1 { font-size: 24px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .sidebar p { font-size: 14px; color: #ffffff; opacity: 0.9; margin-top: 10px; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-100px) translateX(50px); }
+        }
 
-        /* Content Section */
-        .main-content { overflow-y: auto; max-height: 70vh; padding-right: 10px; }
+        /* --- FLOATING LAYOUT --- */
+        .pookie-container {
+            width: 90%;
+            max-width: 600px;
+            background: var(--pookie-white);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 40px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
 
-        /* Form Styling */
-        .vibe-form { margin-bottom: 30px; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #ff80ab;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 5px;
+        }
+
+        .status-tag {
+            display: inline-block;
+            background: #f8bbd0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: #ad1457;
+        }
+
+        /* --- CUTE FORM --- */
+        .vibe-form {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+        }
+
         input, textarea {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #ffdde1;
+            border-radius: 20px;
+            background: white;
             outline: none;
-            transition: 0.3s;
+            text-align: center;
         }
-        input:focus { background: rgba(255, 255, 255, 0.8); box-shadow: 0 0 10px var(--accent-pink); }
 
         button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(to right, var(--accent-pink), var(--accent-purple));
+            background: #ff80ab;
             color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
             font-weight: bold;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.4);
         }
-        button:hover { transform: scale(1.02); }
 
-        /* Update Cards */
-        .update-card {
-            background: rgba(255, 255, 255, 0.4);
-            padding: 15px;
-            border-radius: 15px;
+        button:hover {
+            background: #f06292;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 128, 171, 0.6);
+        }
+
+        /* --- JOURNAL CARDS --- */
+        .journal-feed {
+            text-align: left;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .journal-card {
+            background: white;
+            padding: 20px;
+            border-radius: 25px;
             margin-bottom: 15px;
-            border: 1px solid var(--glass-border);
-            animation: fadeIn 0.5s ease;
+            border-left: 8px solid #f8bbd0;
+            position: relative;
         }
-        .update-card h4 { color: #d81b60; margin-bottom: 5px; }
-        .update-card small { color: #888; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .journal-card h4 { color: #ec407a; margin-bottom: 5px; }
+        .journal-card p { font-size: 0.95rem; }
+        .journal-card small { color: #b0bec5; display: block; margin-top: 10px; }
 
-        /* Mobile View */
-        @media (max-width: 768px) {
-            .glass-container { grid-template-columns: 1fr; }
-            .sidebar { border-right: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px; padding-right: 0; }
-        }
     </style>
 </head>
 <body>
 
-<div class="glass-container">
-    <div class="sidebar">
-        <div class="profile-pic">AT</div>
-        <h1>Alan Thomas</h1>
-        <p>Full Stack Dev Enthusiast</p>
-        <p>✨ Currently learning Web Workflow & MongoDB</p>
+    <div class="pookie-bg">
+        <div class="bubble" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
+        <div class="bubble" style="width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 2s;"></div>
+        <div class="bubble" style="width: 80px; height: 80px; top: 80%; left: 20%; animation-delay: 4s;"></div>
+        <div class="bubble" style="width: 120px; height: 120px; top: 20%; left: 70%; animation-delay: 1s;"></div>
     </div>
 
-    <div class="main-content">
-        <section class="vibe-form">
-            <h3 style="margin-bottom: 15px; color: white;">🌸 Share an Update</h3>
-            <form action="/add" method="POST">
-                <input type="text" name="skill" placeholder="What are you studying today?" required>
-                <textarea name="notes" placeholder="Any cool notes or takeaways?" rows="3"></textarea>
-                <button type="submit">Post to Journal</button>
-            </form>
-        </section>
+    <div class="pookie-container">
+        <div class="header">
+            <h1>Aliyar Ishrath</h1>
+            <div class="status-tag">✨ Software Princess ✨</div>
+        </div>
 
-        <h3 style="margin-bottom: 15px; color: white;">Journal Feed</h3>
-        <div id="feed">
+        <div class="vibe-form">
+            <h3 style="margin-bottom: 15px; color: #ff80ab;">Post a Vibe Check</h3>
+            <form action="/add" method="POST">
+                <input type="text" name="skill" placeholder="What are we learning today?" required>
+                <textarea name="notes" placeholder="Drop some notes here..."></textarea>
+                <button type="submit">💖 Post 💖</button>
+            </form>
+        </div>
+
+        <div class="journal-feed">
+            <h3 style="margin-bottom: 15px; border-bottom: 2px solid #ffdde1; padding-bottom: 5px;">My Diary</h3>
             {% for post in posts %}
-            <div class="update-card">
+            <div class="journal-card">
                 <h4>{{ post.skill }}</h4>
                 <p>{{ post.notes }}</p>
-                <small>Posted on: {{ post.date }}</small>
+                <small>Posted on {{ post.date }}</small>
             </div>
             {% endfor %}
         </div>
     </div>
-</div>
 
 </body>
 </html>
