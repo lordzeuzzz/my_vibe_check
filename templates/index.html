@@ -3,180 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aliyar Ishrath | ✨ Pookie Portfolio</title>
+    <title>Abhishek Kuriakose | Dev Terminal</title>
     <style>
         :root {
-            --pookie-pink: #ffc1cc;
-            --pookie-lavender: #e0b0ff;
-            --pookie-white: rgba(255, 255, 255, 0.7);
-            --text-dark: #6d4c41;
+            --bg-dark: #0a0b10;
+            --glass-bg: rgba(17, 25, 40, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.125);
+            --accent-blue: #00d2ff;
+            --accent-glow: rgba(0, 210, 255, 0.3);
+            --text-primary: #e6edf3;
+            --text-secondary: #7d8590;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Segoe UI', cursive, sans-serif;
+        
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(rgba(0, 210, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 210, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            color: var(--text-dark);
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%);
+            padding: 40px 20px;
         }
 
-        /* --- POOKIE BACKGROUND ANIMATION --- */
-        .pookie-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
+        /* --- LAYOUT STRUCTURE --- */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 24px;
+            max-width: 1100px;
+            width: 100%;
         }
 
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: white;
-            opacity: 0.4;
-            animation: float 15s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-100px) translateX(50px); }
-        }
-
-        /* --- FLOATING LAYOUT --- */
-        .pookie-container {
-            width: 90%;
-            max-width: 600px;
-            background: var(--pookie-white);
-            backdrop-filter: blur(10px);
-            border-radius: 40px;
-            padding: 40px;
-            border: 3px solid #ffffff;
-            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
-            text-align: center;
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            color: #ff80ab;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
-            margin-bottom: 5px;
-        }
-
-        .status-tag {
-            display: inline-block;
-            background: #f8bbd0;
-            padding: 5px 15px;
+        /* --- GLASSMORPHIC SIDEBAR --- */
+        .sidebar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            color: #ad1457;
+            padding: 30px;
+            text-align: center;
+            height: fit-content;
+            position: sticky;
+            top: 40px;
         }
 
-        /* --- CUTE FORM --- */
-        .vibe-form {
-            background: rgba(255, 255, 255, 0.5);
-            padding: 25px;
-            border-radius: 30px;
-            margin-bottom: 30px;
+        .profile-icon {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            border-radius: 16px;
+            margin: 0 auto 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; font-weight: bold; color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
+
+        .sidebar h1 { font-size: 1.5rem; margin-bottom: 8px; color: var(--accent-blue); }
+        .sidebar p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+
+        /* --- MAIN FEED --- */
+        .feed-area { display: flex; flex-direction: column; gap: 24px; }
+
+        /* --- INPUT CARD --- */
+        .input-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .input-card h3 { font-size: 1rem; color: var(--accent-blue); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
 
         input, textarea {
             width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 2px solid #ffdde1;
-            border-radius: 20px;
-            background: white;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 12px;
+            color: white;
+            margin-bottom: 12px;
             outline: none;
-            text-align: center;
+            transition: 0.3s;
         }
+
+        input:focus { border-color: var(--accent-blue); box-shadow: 0 0 10px var(--accent-glow); }
 
         button {
-            background: #ff80ab;
-            color: white;
+            width: 100%;
+            background: var(--accent-blue);
+            color: var(--bg-dark);
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
+            padding: 12px;
+            border-radius: 8px;
             font-weight: bold;
-            font-size: 1.1rem;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.4);
         }
 
-        button:hover {
-            background: #f06292;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 128, 171, 0.6);
-        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px var(--accent-glow); }
 
-        /* --- JOURNAL CARDS --- */
-        .journal-feed {
-            text-align: left;
-            max-height: 400px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .journal-card {
-            background: white;
+        /* --- UPDATE CARDS --- */
+        .update-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
             padding: 20px;
-            border-radius: 25px;
-            margin-bottom: 15px;
-            border-left: 8px solid #f8bbd0;
-            position: relative;
+            transition: 0.3s;
         }
 
-        .journal-card h4 { color: #ec407a; margin-bottom: 5px; }
-        .journal-card p { font-size: 0.95rem; }
-        .journal-card small { color: #b0bec5; display: block; margin-top: 10px; }
+        .update-card:hover { border-color: var(--accent-blue); transform: translateX(5px); }
+        .update-card h4 { color: var(--accent-blue); margin-bottom: 8px; }
+        .update-card p { font-size: 0.95rem; color: var(--text-primary); opacity: 0.9; }
+        .update-card .meta { display: block; margin-top: 15px; font-size: 0.75rem; color: var(--text-secondary); }
 
+        /* Mobile View */
+        @media (max-width: 850px) {
+            .dashboard { grid-template-columns: 1fr; }
+            .sidebar { position: relative; top: 0; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="pookie-bg">
-        <div class="bubble" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
-        <div class="bubble" style="width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 2s;"></div>
-        <div class="bubble" style="width: 80px; height: 80px; top: 80%; left: 20%; animation-delay: 4s;"></div>
-        <div class="bubble" style="width: 120px; height: 120px; top: 20%; left: 70%; animation-delay: 1s;"></div>
-    </div>
-
-    <div class="pookie-container">
-        <div class="header">
-            <h1>Aliyar Ishrath</h1>
-            <div class="status-tag">✨ Software Princess ✨</div>
-        </div>
-
-        <div class="vibe-form">
-            <h3 style="margin-bottom: 15px; color: #ff80ab;">Post a Vibe Check</h3>
-            <form action="/add" method="POST">
-                <input type="text" name="skill" placeholder="What are we learning today?" required>
-                <textarea name="notes" placeholder="Drop some notes here..."></textarea>
-                <button type="submit">💖 Post 💖</button>
-            </form>
-        </div>
-
-        <div class="journal-feed">
-            <h3 style="margin-bottom: 15px; border-bottom: 2px solid #ffdde1; padding-bottom: 5px;">My Diary</h3>
-            {% for post in posts %}
-            <div class="journal-card">
-                <h4>{{ post.skill }}</h4>
-                <p>{{ post.notes }}</p>
-                <small>Posted on {{ post.date }}</small>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="profile-icon">AK</div>
+            <h1>Abhishek Kuriakose</h1>
+            <p>Full-Stack Developer | Python & C Enthusiast</p>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+                <p style="color: var(--accent-blue); font-weight: bold;">Assignment 2026</p>
+                <p>MongoDB • Flask • Vercel</p>
             </div>
-            {% endfor %}
-        </div>
+        </aside>
+
+        <main class="feed-area">
+            <section class="input-card">
+                <h3>System Status Update</h3>
+                <form action="/add" method="POST">
+                    <input type="text" name="skill" placeholder="Skill / Topic" required>
+                    <textarea name="notes" placeholder="Detailed notes..." rows="3"></textarea>
+                    <button type="submit">Push to Cloud Database</button>
+                </form>
+            </section>
+
+            <div class="updates-container">
+                <h3 style="margin-bottom: 15px; padding-left: 10px; font-size: 0.9rem; color: var(--text-secondary);">Recent Activity Logs</h3>
+                {% for post in posts %}
+                <div class="update-card">
+                    <h4>{{ post.skill }}</h4>
+                    <p>{{ post.notes }}</p>
+                    <span class="meta">Timestamp: {{ post.date }} | Node: MongoDB-Atlas</span>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
     </div>
 
 </body>
