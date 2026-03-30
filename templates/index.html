@@ -3,164 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhishek Kuriakose | Dev Terminal</title>
+    <title>My Web | Alan Thomas Portal</title>
     <style>
         :root {
-            --bg-dark: #0a0b10;
-            --glass-bg: rgba(17, 25, 40, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.125);
-            --accent-blue: #00d2ff;
-            --accent-glow: rgba(0, 210, 255, 0.3);
-            --text-primary: #e6edf3;
-            --text-secondary: #7d8590;
+            /* --- DEEP CYBER PALETTE --- */
+            --bg-color: #05070a;
+            --hub-bg: rgba(15, 22, 33, 0.7);
+            --card-bg: rgba(22, 30, 42, 0.9);
+            --text-main: #e0e6ed;
+            --text-dim: #94a3b8;
+            --accent: #00ff88; /* Cyber Lime */
+            --accent-glow: rgba(0, 255, 136, 0.3);
+            --accent-secondary: #7e57c2; /* Deep Purple */
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background-color: var(--bg-dark);
-            background-image: 
-                linear-gradient(rgba(0, 210, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 210, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            color: var(--text-primary);
+            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif; 
+            background: radial-gradient(circle at top right, #0d1b2a, var(--bg-color));
+            background-attachment: fixed;
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
+            overflow-x: hidden;
         }
 
-        /* --- LAYOUT STRUCTURE --- */
-        .dashboard {
+        /* --- THE GRAPHIC BACKGROUND EFFECT (Floating Grid) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            transform: perspective(1000px) rotateX(60deg) translateY(-200px);
+            animation: gridScroll 30s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes gridScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 1000px; }
+        }
+
+        /* --- THE STRUCTURE (Digital Hub Terminal) --- */
+        .terminal-hub {
             display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 24px;
+            grid-template-columns: 320px 1fr;
+            gap: 25px;
             max-width: 1100px;
             width: 100%;
+            animation: terminalAppear 0.8s ease-out;
         }
 
-        /* --- GLASSMORPHIC SIDEBAR --- */
-        .sidebar {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
+        @keyframes terminalAppear {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- SIDEPANEL (Alan's Info) --- */
+        .sidepanel {
+            background: var(--hub-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
             border-radius: 20px;
-            padding: 30px;
+            padding: 40px;
             text-align: center;
             height: fit-content;
             position: sticky;
-            top: 40px;
+            top: 50px;
         }
 
-        .profile-icon {
-            width: 80px; height: 80px;
-            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
-            border-radius: 16px;
+        .status-light {
+            width: 12px; height: 12px;
+            background-color: var(--accent);
+            border-radius: 50%;
             margin: 0 auto 20px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 32px; font-weight: bold; color: var(--bg-dark);
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 10px var(--accent);
         }
 
-        .sidebar h1 { font-size: 1.5rem; margin-bottom: 8px; color: var(--accent-blue); }
-        .sidebar p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+        .sidepanel h1 { font-size: 1.8rem; margin-bottom: 8px; color: #fff; text-shadow: 0 0 15px var(--accent); }
+        .sidepanel p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
 
-        /* --- MAIN FEED --- */
-        .feed-area { display: flex; flex-direction: column; gap: 24px; }
+        /* --- CONTENT AREA --- */
+        .main-feed { display: flex; flex-direction: column; gap: 25px; }
 
-        /* --- INPUT CARD --- */
-        .input-card {
-            background: var(--glass-bg);
+        /* --- GLASS INPUT FORM --- */
+        .glass-input-card {
+            background: var(--hub-bg);
             backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: border-color 0.3s ease;
         }
 
-        .input-card h3 { font-size: 1rem; color: var(--accent-blue); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .glass-input-card:focus-within { border-color: var(--accent); }
+
+        h3 { font-size: 1rem; color: var(--accent); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
 
         input, textarea {
             width: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
             color: white;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             outline: none;
-            transition: 0.3s;
+            font-family: inherit;
         }
-
-        input:focus { border-color: var(--accent-blue); box-shadow: 0 0 10px var(--accent-glow); }
 
         button {
             width: 100%;
-            background: var(--accent-blue);
-            color: var(--bg-dark);
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 14px;
+            border-radius: 10px;
             font-weight: bold;
+            text-transform: uppercase;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
-        button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px var(--accent-glow); }
+        button:hover { 
+            background: var(--accent); 
+            color: #05070a; 
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); 
+            transform: translateY(-2px); 
+        }
 
-        /* --- UPDATE CARDS --- */
-        .update-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+        /* --- RECENT ACTIVITY (Live Feed with Glow) --- */
+        .feed-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-radius: 16px;
             padding: 20px;
-            transition: 0.3s;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            animation: cardAppear 0.5s ease;
         }
 
-        .update-card:hover { border-color: var(--accent-blue); transform: translateX(5px); }
-        .update-card h4 { color: var(--accent-blue); margin-bottom: 8px; }
-        .update-card p { font-size: 0.95rem; color: var(--text-primary); opacity: 0.9; }
-        .update-card .meta { display: block; margin-top: 15px; font-size: 0.75rem; color: var(--text-secondary); }
+        .feed-card:hover { 
+            transform: translateX(10px); 
+            background: #19212c; 
+            border-color: rgba(126, 87, 194, 0.5); /* Purple Highlight on Hover */
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feed-card h4 { color: var(--accent-secondary); margin-bottom: 10px; font-weight: 600; }
+        .feed-card p { font-size: 0.95rem; line-height: 1.6; }
+        .meta { display: block; margin-top: 15px; font-size: 0.75rem; color: var(--text-dim); }
+
+        /* Custom Scrollbar */
+        .main-feed::-webkit-scrollbar { width: 6px; }
+        .main-feed::-webkit-scrollbar-thumb { background: #1a232f; border-radius: 10px; }
 
         /* Mobile View */
         @media (max-width: 850px) {
-            .dashboard { grid-template-columns: 1fr; }
-            .sidebar { position: relative; top: 0; }
+            .terminal-hub { grid-template-columns: 1fr; }
+            .sidepanel { position: relative; top: 0; width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="dashboard">
-        <aside class="sidebar">
-            <div class="profile-icon">AK</div>
-            <h1>Abhishek Kuriakose</h1>
-            <p>Full-Stack Developer | Python & C Enthusiast</p>
-            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
-                <p style="color: var(--accent-blue); font-weight: bold;">Assignment 2026</p>
-                <p>MongoDB • Flask • Vercel</p>
+    <div class="terminal-hub">
+        <aside class="sidepanel">
+            <div class="status-light"></div>
+            <h1>Alan Thomas</h1>
+            <p>Developer | Designer | System Explorer</p>
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-dim);">
+                <span>📍 Kerala, India</span><br>
+                <span>🚀 Flask • MongoDB Atlas • Vercel</span>
             </div>
         </aside>
 
-        <main class="feed-area">
-            <section class="input-card">
-                <h3>System Status Update</h3>
+        <main class="main-feed">
+            
+            <section class="glass-input-card">
+                <h3>System Log Update</h3>
                 <form action="/add" method="POST">
-                    <input type="text" name="skill" placeholder="Skill / Topic" required>
-                    <textarea name="notes" placeholder="Detailed notes..." rows="3"></textarea>
-                    <button type="submit">Push to Cloud Database</button>
+                    <input type="text" name="skill" placeholder="Log Module/Topic..." required>
+                    <textarea name="notes" placeholder="Enter full activity logs here..." rows="3"></textarea>
+                    <button type="submit">Push to MongoDB</button>
                 </form>
             </section>
 
-            <div class="updates-container">
-                <h3 style="margin-bottom: 15px; padding-left: 10px; font-size: 0.9rem; color: var(--text-secondary);">Recent Activity Logs</h3>
+            <div class="logs-container">
+                <h3 style="margin-bottom: 15px; padding-left: 10px;">Recent Database Entries</h3>
+                
                 {% for post in posts %}
-                <div class="update-card">
+                <div class="feed-card">
                     <h4>{{ post.skill }}</h4>
                     <p>{{ post.notes }}</p>
-                    <span class="meta">Timestamp: {{ post.date }} | Node: MongoDB-Atlas</span>
+                    <span class="meta">Entry ID: {{ post._id }} | Timestamp: {{ post.date }}</span>
                 </div>
                 {% endfor %}
             </div>
