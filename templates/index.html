@@ -3,25 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web | Alan Thomas Portal</title>
+    <title>My Web | Alan Thomas</title>
     <style>
         :root {
-            /* --- DEEP CYBER PALETTE --- */
             --bg-color: #05070a;
             --hub-bg: rgba(15, 22, 33, 0.7);
             --card-bg: rgba(22, 30, 42, 0.9);
             --text-main: #e0e6ed;
             --text-dim: #94a3b8;
             --accent: #00ff88; /* Cyber Lime */
-            --accent-glow: rgba(0, 255, 136, 0.3);
-            --accent-secondary: #7e57c2; /* Deep Purple */
             --border: rgba(255, 255, 255, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
-            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif; 
+            font-family: 'Inter', sans-serif; 
             background: radial-gradient(circle at top right, #0d1b2a, var(--bg-color));
             background-attachment: fixed;
             color: var(--text-main);
@@ -29,10 +26,9 @@
             display: flex;
             justify-content: center;
             padding: 50px 20px;
-            overflow-x: hidden;
         }
 
-        /* --- THE GRAPHIC BACKGROUND EFFECT (Floating Grid) --- */
+        /* Animated Grid Background Effect */
         body::before {
             content: "";
             position: fixed;
@@ -52,26 +48,18 @@
             100% { background-position: 0 1000px; }
         }
 
-        /* --- THE STRUCTURE (Digital Hub Terminal) --- */
         .terminal-hub {
             display: grid;
             grid-template-columns: 320px 1fr;
             gap: 25px;
             max-width: 1100px;
             width: 100%;
-            animation: terminalAppear 0.8s ease-out;
         }
 
-        @keyframes terminalAppear {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- SIDEPANEL (Alan's Info) --- */
+        /* Sidepanel with "My Web" Branding */
         .sidepanel {
             background: var(--hub-bg);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 40px;
@@ -81,34 +69,26 @@
             top: 50px;
         }
 
-        .status-light {
-            width: 12px; height: 12px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            box-shadow: 0 0 10px var(--accent);
+        .sidepanel h1 { 
+            font-size: 2.2rem; 
+            margin-bottom: 10px; 
+            color: var(--accent); 
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+            text-transform: uppercase;
         }
 
-        .sidepanel h1 { font-size: 1.8rem; margin-bottom: 8px; color: #fff; text-shadow: 0 0 15px var(--accent); }
-        .sidepanel p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+        .sidepanel h2 { font-size: 1.2rem; color: #fff; margin-bottom: 15px; }
 
-        /* --- CONTENT AREA --- */
+        /* Main Content Area */
         .main-feed { display: flex; flex-direction: column; gap: 25px; }
 
-        /* --- GLASS INPUT FORM --- */
-        .glass-input-card {
+        .glass-card {
             background: var(--hub-bg);
             backdrop-filter: blur(16px);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: border-color 0.3s ease;
         }
-
-        .glass-input-card:focus-within { border-color: var(--accent); }
-
-        h3 { font-size: 1rem; color: var(--accent); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
 
         input, textarea {
             width: 100%;
@@ -119,7 +99,6 @@
             color: white;
             margin-bottom: 15px;
             outline: none;
-            font-family: inherit;
         }
 
         button {
@@ -130,52 +109,26 @@
             padding: 14px;
             border-radius: 10px;
             font-weight: bold;
-            text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: 0.3s;
         }
 
         button:hover { 
             background: var(--accent); 
             color: #05070a; 
             box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); 
-            transform: translateY(-2px); 
         }
 
-        /* --- RECENT ACTIVITY (Live Feed with Glow) --- */
-        .feed-card {
+        .feed-item {
             background: var(--card-bg);
-            border: 1px solid var(--border);
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 15px;
-            transition: all 0.3s ease;
-            animation: cardAppear 0.5s ease;
+            border-left: 4px solid var(--accent);
         }
 
-        .feed-card:hover { 
-            transform: translateX(10px); 
-            background: #19212c; 
-            border-color: rgba(126, 87, 194, 0.5); /* Purple Highlight on Hover */
-        }
-
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .feed-card h4 { color: var(--accent-secondary); margin-bottom: 10px; font-weight: 600; }
-        .feed-card p { font-size: 0.95rem; line-height: 1.6; }
-        .meta { display: block; margin-top: 15px; font-size: 0.75rem; color: var(--text-dim); }
-
-        /* Custom Scrollbar */
-        .main-feed::-webkit-scrollbar { width: 6px; }
-        .main-feed::-webkit-scrollbar-thumb { background: #1a232f; border-radius: 10px; }
-
-        /* Mobile View */
         @media (max-width: 850px) {
             .terminal-hub { grid-template-columns: 1fr; }
-            .sidepanel { position: relative; top: 0; width: 100%; }
         }
     </style>
 </head>
@@ -183,34 +136,31 @@
 
     <div class="terminal-hub">
         <aside class="sidepanel">
-            <div class="status-light"></div>
-            <h1>Alan Thomas</h1>
-            <p>Developer | Designer | System Explorer</p>
-            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-dim);">
-                <span>📍 Kerala, India</span><br>
-                <span>🚀 Flask • MongoDB Atlas • Vercel</span>
+            <h1>My Web</h1>
+            <h2>Alan Thomas</h2>
+            <p style="color: var(--text-dim); font-size: 0.9rem;">Full-Stack Developer Portal</p>
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border);">
+                <p style="color: var(--accent); font-size: 0.8rem;">SEC ASSIGNMENT 2026</p>
             </div>
         </aside>
 
         <main class="main-feed">
-            
-            <section class="glass-input-card">
-                <h3>System Log Update</h3>
+            <section class="glass-card">
+                <h3 style="color: var(--accent); margin-bottom: 20px;">SYSTEM LOG</h3>
                 <form action="/add" method="POST">
-                    <input type="text" name="skill" placeholder="Log Module/Topic..." required>
-                    <textarea name="notes" placeholder="Enter full activity logs here..." rows="3"></textarea>
-                    <button type="submit">Push to MongoDB</button>
+                    <input type="text" name="skill" placeholder="Topic..." required>
+                    <textarea name="notes" placeholder="Notes..." rows="3"></textarea>
+                    <button type="submit">PUSH TO DATABASE</button>
                 </form>
             </section>
 
-            <div class="logs-container">
-                <h3 style="margin-bottom: 15px; padding-left: 10px;">Recent Database Entries</h3>
-                
+            <div class="logs">
+                <h3 style="margin-bottom: 15px; padding-left: 10px; color: var(--text-dim);">RECENT ENTRIES</h3>
                 {% for post in posts %}
-                <div class="feed-card">
-                    <h4>{{ post.skill }}</h4>
+                <div class="feed-item">
+                    <h4 style="color: var(--accent);">{{ post.skill }}</h4>
                     <p>{{ post.notes }}</p>
-                    <span class="meta">Entry ID: {{ post._id }} | Timestamp: {{ post.date }}</span>
+                    <small style="color: var(--text-dim);">{{ post.date }}</small>
                 </div>
                 {% endfor %}
             </div>
